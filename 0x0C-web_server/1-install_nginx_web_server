@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Update the package list
+sudo apt-get update -y
+
+sudo apt-get install nginx -y
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+sudo sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
+
+sudo /etc/init.d/nginx restart
+
+echo "Nginx has been installed and configured. You can test it by running 'curl localhost'."
+
